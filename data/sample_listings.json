@@ -1,0 +1,7 @@
+[
+  {"id": 1, "source": "business-directory", "company": "BrightMart Retail", "text": "Karachi based retail chain with 12 outlets. We are looking for a POS and inventory management system. Our current Excel sheets are failing. Budget approved for this quarter. Please contact our operations head."},
+  {"id": 2, "source": "linkedin-post", "company": "FitZone Gyms", "text": "Hiring a social media manager and also exploring tools to automate member WhatsApp reminders. Planning to open 3 new branches next year."},
+  {"id": 3, "source": "business-directory", "company": "Textile Hub Pvt Ltd", "text": "Leading textile exporter. Established 1995. Products: cotton fabric, denim. Contact: info@textilehub.example"},
+  {"id": 4, "source": "forum-post", "company": "EduSpark Academy", "text": "Urgent: we need a school management website with online fee payment and parent portal before the new session starts in January. Open to quotes from agencies."},
+  {"id": 5, "source": "linkedin-post", "company": "GreenLeaf Cafe", "text": "Just celebrated 5 years in business! Thank you to all our customers."}
+]
