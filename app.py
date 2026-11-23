@@ -4,23 +4,35 @@ import os
 import streamlit as st
 from dotenv import load_dotenv
 
-load_dotenv()  # local chalane par .env se keys
+load_dotenv()  # Local run ke waqt .env se keys load karega
+
+LLM_ENV_KEYS = (
+    "GEMINI_API_KEY",
+    "GEMINI_MODEL",
+    "GEMINI_FALLBACK_MODELS",
+    "GROQ_API_KEY",
+    "GROQ_MODEL",
+    "ANTHROPIC_API_KEY",
+    "CLAUDE_MODEL",
+    "LLM_PROVIDER",
+)
 
 
-def _secret(name):
-    """Streamlit Cloud ke Secrets se, warna .env/environment se."""
+def get_secret_value(key_name: str):
+    """Pehle Streamlit Cloud Secrets check karega, warna .env / OS environment se lega."""
     try:
-        return st.secrets[name]
+        if key_name in st.secrets:
+            return st.secrets[key_name]
     except Exception:
-        return os.getenv(name)
+        pass
+    return os.getenv(key_name)
 
 
-# Cloud ke Secrets ko environment mein copy karo, taake extractor.py unhein dekh sake
-for _k in ("GEMINI_API_KEY", "GEMINI_MODEL", "GEMINI_FALLBACK_MODELS",
-           "GROQ_API_KEY", "GROQ_MODEL", "ANTHROPIC_API_KEY", "CLAUDE_MODEL", "LLM_PROVIDER"):
-    _v = _secret(_k)
-    if _v:
-        os.environ[_k] = str(_v)
+# Cloud Secrets ko os.environ mein copy karein taake extractor.py aur baqi modules use kar sakein
+for env_key in LLM_ENV_KEYS:
+    secret_val = get_secret_value(env_key)
+    if secret_val is not None and str(secret_val).strip() != "":
+        os.environ[env_key] = str(secret_val).strip()
 
 from sources import load_sample, fetch_hackernews, find_website_osm, fetch_website_text
 from extractor import extract, pick_provider
