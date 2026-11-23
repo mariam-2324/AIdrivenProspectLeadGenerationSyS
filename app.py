@@ -43,7 +43,7 @@ st.title("🎯 AI-Driven Prospecting & Lead Extraction")
 st.caption("Text of business or Website -> LLM -> requirements, buying signals, website gaps -> lead score")
 
 # Optional password (Secrets mein APP_PASSWORD set ho to hi poochha jayega)
-_pw = _secret("APP_PASSWORD")
+_pw = get_secret_value("APP_PASSWORD")
 if _pw and st.text_input("Password", type="password") != _pw:
     st.info("Password daal kar aage barhein.")
     st.stop()
